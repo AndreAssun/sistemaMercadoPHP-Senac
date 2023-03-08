@@ -1,0 +1,15 @@
+use aula08;
+
+SELECT * FROM aula08.tbl_clientes
+WHERE renda IN
+(select max(renda) from aula08.tbl_clientes);
+
+SELECT * FROM aula08.tbl_clientes
+WHERE renda IN
+(select renda from aula08.tbl_clientes WHERE renda >=2500);
+
+select * from aula08.tbl_clientes where nome in (select razao_social FROM aula08.tbl_parceiros);
+select * from aula08.tbl_clientes where nome in ('Karla', 'Josefina');
+select * from aula08.tbl_clientes where nome not in ('Karla', 'Josefina');
+
+select * from aula08.tbl_clientes where nome not in ('Karla', 'Josefina');
