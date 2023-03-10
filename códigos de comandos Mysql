@@ -13,3 +13,93 @@ select * from aula08.tbl_clientes where nome in ('Karla', 'Josefina');
 select * from aula08.tbl_clientes where nome not in ('Karla', 'Josefina');
 
 select * from aula08.tbl_clientes where nome not in ('Karla', 'Josefina');
+
+----------------------------
+
+***CHAVE ESTRANGEIRA
+
+ALTER TABLE DEPT
+ADD ( PRIMARY KEY (deptno) ) ;
+
+
+-- create
+CREATE TABLE EMPREGADO (
+  empId INTEGER PRIMARY KEY,
+  nome VARCHAR(45) NOT NULL,
+  job VARCHAR(45) NOT NULL,
+  deptno INTEGER NOT NULL,
+  salario double NOT NULL
+);
+
+ALTER TABLE EMPREGADO
+  ADD ( FOREIGN KEY (deptno) REFERENCES DEPT(deptno) );
+ 
+DESCRIBE EMPREGADO;
+
+INSERT INTO DEPT VALUES (0001, 'TI');
+INSERT INTO DEPT VALUES (0002, 'MKT');
+INSERT INTO DEPT VALUES (0003, 'RH');
+INSERT INTO DEPT VALUES (0004, 'ADMIN');
+
+
+-- insert
+INSERT INTO EMPREGADO VALUES (0001, 'Vitor', 'DBA', 1, 8000);
+INSERT INTO EMPREGADO VALUES (0002, 'Andrei', 'CEO', 4, 50000);
+INSERT INTO EMPREGADO VALUES (0003, 'Maicon', 'Analista', 3, 5000);
+INSERT INTO EMPREGADO VALUES (0004, 'Andre', 'Social Midia', 2, 6000);
+
+
+-- fetch 
+SELECT * FROM EMPREGADO;
+
+DELETE from DEPT WHERE deptno = 3;
+
+DELETE from EMPREGADO WHERE deptno = 3;
+
+SELECT * FROM EMPREGADO;
+
+
+-----------------------------------------------------
+**CRIAÇÃO BANCO DE DADOS ESCOLA
+
+
+CREATE TABLE TURMA
+( idTurma integer NOT NULL,
+materia VARCHAR(30) NOT NULL,
+sala integer NOT NULL,
+horario time NOT NULL);
+
+ALTER TABLE TURMA ADD( PRIMARY KEY (idTurma));
+
+
+CREATE TABLE ALUNO(
+idAluno integer NOT NULL,
+nome VARCHAR(40) NOT NULL,
+matricula VARCHAR(20) NOT NULL
+);
+
+ALTER TABLE ALUNO
+ADD ( PRIMARY KEY (idAluno));
+
+
+CREATE TABLE PROFESSOR(
+idProf integer PRIMARY KEY NOT NULL,
+nome VARCHAR(30),
+titulacao VARCHAR(30)
+);
+
+
+INSERT INTO ALUNO VALUES (1, 'Heitor', '154894');
+INSERT INTO PROFESSOR VALUES (1, 'Leonardo', 'mestre');
+INSERT INTO PROFESSOR VALUES (2, 'Igor', 'mestre');
+INSERT INTO TURMA VALUES (1, 'PHP E MYSQL', 40,'19:00');
+INSERT INTO TURMA VALUES (2, 'PHP E MYSQL', 50,'19:00');
+
+SELECT * FROM ALUNO;
+SELECT * FROM PROFESSOR;
+SELECT * FROM TURMA;
+
+
+
+
+
