@@ -98,6 +98,88 @@ INSERT INTO TURMA VALUES (2, 'PHP E MYSQL', 50,'19:00');
 SELECT * FROM ALUNO;
 SELECT * FROM PROFESSOR;
 SELECT * FROM TURMA;
+-----------------------------------------------------------
+
+create database farmacia;
+-- drop database farmacia;
+use farmacia;
+
+CREATE TABLE Produtos(
+idProd integer primary key,
+nome varchar(40) not null,
+preco double not null,
+dt_vencto date not null,
+lote varchar(10) not null 
+);
+
+alter table Perfumaria
+add (FOREIGN KEY (idPerf) REFERENCES Produtos(idProd));
+
+CREATE TABLE Medicamentos(
+idMed integer primary key,
+ehGenerico tinyint (1) NOT NULL,
+laboratorio varchar(25)  NOT NULL,
+ehRestrito tinyint(1) not null
+);
+
+alter table Medicamentos
+add (FOREIGN KEY (idMed) REFERENCES Produtos(idProd));
+
+CREATE TABLE Perfumaria(
+idPerf integer primary key,
+tipo varchar(25)  NOT NULL,
+marca varchar(25)  NOT NULL,
+quantidade varchar(10) not null
+);
+
+insert into Produtos(idProd,nome,preco,dt_vencto,lote) 
+			  values(1,"Diporona",6.50,"2026-03-15","100b");
+              
+insert into Produtos(idProd,nome,preco,dt_vencto,lote) 
+			  values(2,"Amoxilina",59,"2026-03-15","100c");
+              
+insert into Produtos(idProd,nome,preco,dt_vencto,lote) 
+			  values(3,"Shampoo Clear",14.99,"2023-12-01","1000e");
+              
+insert into Produtos(idProd,nome,preco,dt_vencto,lote) 
+			  values(4,"Condicionador seda",14.99,"2023-12-01","10dfe");
+              
+insert into Produtos(idProd,nome,preco,dt_vencto,lote) 
+			  values(5,"Chiclete Valda",14.99,"2023-12-01","10dfffdafe");
+              
+              
+
+select * from Produtos;
+
+insert into Medicamentos(idMed,ehGenerico,laboratorio,ehRestrito) 
+			  values(1,1,"EMS",0);
+              
+insert into Medicamentos(idMed,ehGenerico,laboratorio,ehRestrito) 
+			  values(2,1,"União quimica",1);
+              
+insert into Perfumaria
+			  values(5,"Clear","Shampoo");
+              
+ insert into Perfumaria
+			  values(4,"Seda","Condicionador");
+
+
+select * from Produtos;
+-- select * from Produtos, Medicamentos;
+
+select * from Produtos  
+inner join Medicamentos 
+on Produtos.idProd = Medicamentos.idMed;
+
+select * from Produtos  
+inner join Perfumaria 
+on Produtos.idProd = Perfumaria.idPerf;
+
+
+select * from Produtos  
+left join Medicamentos 
+on Produtos.idProd = Medicamentos.idMed;
+
 
 
 
