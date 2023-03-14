@@ -13,13 +13,15 @@
 <?php
 
 $query = "SELECT nome, slug, img FROM tbl_categorias";
+$query2 = "SELECT id, nome, descricao, preco, id_categoria FROM tbl_lista_produtos";
 $resultado = mysqli_query($conexao, $query);
+$resultado2 = mysqli_query($conexao, $query2);
 $dados_categorias = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 
 
 foreach ($dados_categorias as $categoria) {
 $txt = "<h2>Seja bem vindo<?h2><br>".$categoria["nome"];
-$lista_produtos = ""
+$lista_produtos = produto["nome"]."-Preço R$".produto["preco"];
 $myFile = fopen($categoria["slug"] . ".html" , "w");
 fwrite ($myFile, $txt);
 fclose ($myFile);
